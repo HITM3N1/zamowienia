@@ -1,7 +1,5 @@
 /target/
 /.mvn/
-/docker/zamowienia.tar
-### IntelliJ IDEA ###
 /.idea/
 
 
