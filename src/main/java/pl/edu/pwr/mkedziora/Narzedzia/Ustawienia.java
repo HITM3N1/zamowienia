@@ -1,5 +1,6 @@
 package pl.edu.pwr.mkedziora.Narzedzia;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
 import org.apache.commons.configuration2.PropertiesConfiguration;
@@ -12,31 +13,47 @@ public class Ustawienia {
 
     public static Path getKatalogZamowien() {
 
-        private static final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+        Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
-        String sciezka = dotenv.get("ZAMOWIENIA_DIR");
-        URL zasob;
-        if (sciezka == null || sciezka.isBlank()) {
-            zasob = Ustawienia.class.getClassLoader().getResource("appsettings.properties");
-        }
-
-         konfiguracja.getString("zamowienia.folder");
-
-
-        URL zasob =
+        String sciezkatemp = dotenv.get("ZAMOWIENIA_DIR");
 
         Parameters parametry = new Parameters();
-        FileBasedConfigurationBuilder<PropertiesConfiguration> builder = new FileBasedConfigurationBuilder<>(PropertiesConfiguration.class).configure(parametry.properties().setURL(zasob).setEncoding("UTF-8"));
 
-        try {
-            PropertiesConfiguration konfiguracja = builder.getConfiguration();
-            String sciezka = konfiguracja.getString("katalog");
-            Path katalogZamowien = Path.of(sciezka).toAbsolutePath().normalize();
+        if (sciezkatemp == null || sciezkatemp.isBlank() || true) {
+            URL zasob = Ustawienia.class.getClassLoader().getResource("appsettings.properties");
+            FileBasedConfigurationBuilder<PropertiesConfiguration> builder = new FileBasedConfigurationBuilder<>(PropertiesConfiguration.class).configure(parametry.properties().setURL(zasob).setEncoding("UTF-8"));
 
-            return katalogZamowien;
+            try {
+                PropertiesConfiguration konfiguracja = builder.getConfiguration();
+                String sciezka = konfiguracja.getString("katalog");
+                Path katalogZamowien = Path.of(sciezka).toAbsolutePath().normalize();
+
+                return katalogZamowien;
+            } catch (ConfigurationException e) {
+                throw new RuntimeException(e);
+            }
+
+        } else {
+            try {
+                URL zasob = new URL(sciezkatemp);
+                FileBasedConfigurationBuilder<PropertiesConfiguration> builder = new FileBasedConfigurationBuilder<>(PropertiesConfiguration.class).configure(parametry.properties().setURL(zasob).setEncoding("UTF-8"));
+
+                try {
+                    PropertiesConfiguration konfiguracja = builder.getConfiguration();
+                    String sciezka = konfiguracja.getString("katalog");
+                    Path katalogZamowien = Path.of(sciezka).toAbsolutePath().normalize();
+
+                    return katalogZamowien;
+                } catch (ConfigurationException e) {
+                    throw new RuntimeException(e);
+                }
+
+            } catch (MalformedURLException e) {
+
+            }
+
         }
-        catch (ConfigurationException e) {
-            throw new RuntimeException(e);
-        }
+
+        return null;
     }
 }
