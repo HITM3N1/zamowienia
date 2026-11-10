@@ -1,0 +1,8 @@
+name: zamowienia
+
+services:
+  aplikacja:
+    image: zamowienia:1
+    container_name: zamowienia-app
+    volumes:
+      - "./zamowienia:/app/zamowienia"

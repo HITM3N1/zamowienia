@@ -1,0 +1,20 @@
+{
+    "zamawiajacy": {
+        "imie": "Jan",
+        "nazwisko": "Kowalski",
+        "email": "jan.kowalski@gmail.com",
+        "telefon": "+500600700"
+    },
+    "produkty": [
+        {
+            "kod": "KX23FFF",
+            "ilosc": 12333,
+            "jednostkaMiary": "szt."
+        },
+        {
+            "kod": "HHHFJ2345",
+            "ilosc": 2.53,
+            "jednostkaMiary": "kg"
+        }
+    ]
+}

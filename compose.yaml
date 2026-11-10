@@ -1,0 +1,7 @@
+services:
+  gitea:
+    image: docker.gitea.com/gitea:1.25.5
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./data:/data

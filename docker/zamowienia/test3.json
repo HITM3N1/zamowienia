@@ -1,0 +1,25 @@
+{
+    "zamawiajacy": {
+        "imie": "test",
+        "nazwisko": "test",
+        "email": "test",
+        "telefon": "test"
+    },
+    "produkty": [
+        {
+            "kod": "test",
+            "ilosc": 1,
+            "jednostkaMiary": "test"
+        },
+        {
+            "kod": "test2",
+            "ilosc": 1,
+            "jednostkaMiary": "test"
+        },
+        {
+            "kod": "test3",
+            "ilosc": 1,
+            "jednostkaMiary": "test"
+        }
+    ]
+}

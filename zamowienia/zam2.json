@@ -1,0 +1,15 @@
+{
+    "zamawiajacy": {
+        "imie": "Anna",
+        "nazwisko": "Nowak",
+        "email": "anna.nowak@op.pl",
+        "telefon": "647732898"
+    },
+    "produkty": [
+        {
+            "kod": "UUYS2345",
+            "ilosc": 10,
+            "jednostkaMiary": "m"
+        }
+    ]
+}
